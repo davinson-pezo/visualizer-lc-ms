@@ -184,41 +184,28 @@
 
   <g transform="translate(60 710)">
     <rect class="card" x="0" y="0" width="1480" height="145" rx="12"/>
-    <text x="28" y="38" class="section ink">Named MS/MS library candidates per sample</text>
-    <text x="28" y="66" class="tiny muted">Counts exclude coded library records and unknown features.</text>
+    <text x="28" y="38" class="section ink">Project Reference Database &amp; Matching Parameters</text>
+    <text x="28" y="66" class="tiny muted">Unified library compiled from public tandem MS/MS repositories.</text>
 
-    <g transform="translate(460 70)">
-      <text x="0" y="10" class="tiny muted">Biofilm +</text>
-      <rect x="112" y="5" width="220" height="16" rx="8" class="bar-bg"/>
-      <rect x="112" y="5" width="86" height="16" rx="8" class="bar"/>
-      <text x="346" y="10" class="tiny ink">7</text>
-
-      <text x="0" y="36" class="tiny muted">Biofilm -</text>
-      <rect x="112" y="31" width="220" height="16" rx="8" class="bar-bg"/>
-      <rect x="112" y="31" width="24" height="16" rx="8" class="bar-alt"/>
-      <text x="346" y="36" class="tiny ink">2</text>
-
-      <text x="0" y="62" class="tiny muted">Chlorella +</text>
-      <rect x="112" y="57" width="220" height="16" rx="8" class="bar-bg"/>
-      <rect x="112" y="57" width="220" height="16" rx="8" class="bar-warn"/>
-      <text x="346" y="62" class="tiny ink">18</text>
+    <!-- Column 1: Library Statistics -->
+    <g transform="translate(380 40)">
+      <text x="0" y="15" class="tiny muted" font-weight="bold">Database Volume:</text>
+      <text x="0" y="45" class="tiny ink">843,924 total reference spectra</text>
+      <text x="0" y="70" class="tiny ink">719,975 ESI(+) | 123,788 ESI(-)</text>
     </g>
 
-    <g transform="translate(930 70)">
-      <text x="0" y="10" class="tiny muted">Chlorella -</text>
-      <rect x="128" y="5" width="220" height="16" rx="8" class="bar-bg"/>
-      <rect x="128" y="5" width="24" height="16" rx="8" class="bar-alt"/>
-      <text x="362" y="10" class="tiny ink">2</text>
+    <!-- Column 2: Library Sources -->
+    <g transform="translate(760 40)">
+      <text x="0" y="15" class="tiny muted" font-weight="bold">Spectral Resources:</text>
+      <text x="0" y="45" class="tiny ink">MoNA, MassBank JP/EU, GNPS, LipidBlast,</text>
+      <text x="0" y="70" class="tiny ink">ReSpect Phytochemicals, Fiehn HILIC/NP</text>
+    </g>
 
-      <text x="0" y="36" class="tiny muted">Oedogonium +</text>
-      <rect x="128" y="31" width="220" height="16" rx="8" class="bar-bg"/>
-      <rect x="128" y="31" width="110" height="16" rx="8" class="bar"/>
-      <text x="362" y="36" class="tiny ink">9</text>
-
-      <text x="0" y="62" class="tiny muted">Oedogonium -</text>
-      <rect x="128" y="57" width="220" height="16" rx="8" class="bar-bg"/>
-      <rect x="128" y="57" width="12" height="16" rx="8" class="bar-alt"/>
-      <text x="362" y="62" class="tiny ink">1</text>
+    <!-- Column 3: Matching Thresholds -->
+    <g transform="translate(1140 40)">
+      <text x="0" y="15" class="tiny muted" font-weight="bold">Matching Rules:</text>
+      <text x="0" y="45" class="tiny ink">Precursor: ±0.01 Da | Product ions: ±0.02 Da</text>
+      <text x="0" y="70" class="tiny ink">Cosine Score: ≥0.70 | Min. matched ions: 2</text>
     </g>
   </g>
 
