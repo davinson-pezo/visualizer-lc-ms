@@ -14,7 +14,7 @@ This repository is a static, reproducible, easy-to-open viewer for reviewing chr
 
 ## 📈 Identification Workflow
 
-![LC-QTOF-MS/MS qualitative identification workflow](./assets/identification_workflow_infographic.png)
+![LC-QTOF-MS/MS qualitative identification workflow](./assets/identification_workflow_infographic.png?v=2)
 
 The workflow converts raw LC-QTOF-MS/MS data into tentative qualitative annotations. The reported candidate counts exclude unknown features and coded library records that do not provide clean chemical compound names. The editable SVG source is stored in `assets/identification_workflow_infographic.svg`.
 
