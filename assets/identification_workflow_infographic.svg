@@ -184,28 +184,25 @@
 
   <g transform="translate(60 710)">
     <rect class="card" x="0" y="0" width="1480" height="145" rx="12"/>
-    <text x="28" y="38" class="section ink">Project Reference Database &amp; Matching Parameters</text>
-    <text x="28" y="66" class="tiny muted">Unified library compiled from public tandem MS/MS repositories.</text>
+    <text x="28" y="42" class="section ink">Project Reference Database &amp; Matching Parameters</text>
+    <text x="28" y="68" class="tiny muted">Unified library compiled from public tandem MS/MS repositories.</text>
 
     <!-- Column 1: Library Statistics -->
-    <g transform="translate(380 40)">
-      <text x="0" y="15" class="tiny muted" font-weight="bold">Database Volume:</text>
-      <text x="0" y="45" class="tiny ink">843,924 total reference spectra</text>
-      <text x="0" y="70" class="tiny ink">719,975 ESI(+) | 123,788 ESI(-)</text>
+    <g transform="translate(28 85)">
+      <text x="0" y="18" class="tiny muted" font-weight="bold">Database Volume:</text>
+      <text x="0" y="45" class="tiny ink">843,924 spectra (719,975 ESI+ / 123,788 ESI-)</text>
     </g>
 
     <!-- Column 2: Library Sources -->
-    <g transform="translate(760 40)">
-      <text x="0" y="15" class="tiny muted" font-weight="bold">Spectral Resources:</text>
-      <text x="0" y="45" class="tiny ink">MoNA, MassBank JP/EU, GNPS, LipidBlast,</text>
-      <text x="0" y="70" class="tiny ink">ReSpect Phytochemicals, Fiehn HILIC/NP</text>
+    <g transform="translate(540 85)">
+      <text x="0" y="18" class="tiny muted" font-weight="bold">Spectral Resources:</text>
+      <text x="0" y="45" class="tiny ink">MoNA, MassBank JP/EU, GNPS, LipidBlast, ReSpect, Fiehn</text>
     </g>
 
     <!-- Column 3: Matching Thresholds -->
-    <g transform="translate(1140 40)">
-      <text x="0" y="15" class="tiny muted" font-weight="bold">Matching Rules:</text>
-      <text x="0" y="45" class="tiny ink">Precursor: ±0.01 Da | Product ions: ±0.02 Da</text>
-      <text x="0" y="70" class="tiny ink">Cosine Score: ≥0.70 | Min. matched ions: 2</text>
+    <g transform="translate(1040 85)">
+      <text x="0" y="18" class="tiny muted" font-weight="bold">Matching Rules:</text>
+      <text x="0" y="45" class="tiny ink">Precursor: ±0.01 Da | Product: ±0.02 Da | Cosine: ≥0.70</text>
     </g>
   </g>
 
