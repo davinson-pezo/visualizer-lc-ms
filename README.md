@@ -44,7 +44,7 @@ MoNA LC-MS/MS MSP export + 18 MS-DIAL Public MSP Libraries
 
 Open the main HTML file in a new browser tab:
 
-👉 **[Open visualizer: index.html](./index.html)**
+👉 **[Open Live Visualizer Website](https://davinson-pezo.github.io/visualizer-lc-ms/)**
 
 ### Opening it locally (No Server Required):
 1. Navigate to the `visualizer/` folder.
