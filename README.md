@@ -1,5 +1,11 @@
 # 🔬 LC-QTOF-MS/MS Evidence Reviewer
 
+[![Deploy](https://img.shields.io/badge/deploy-GitHub%20Pages-2ea44f.svg)](https://davinson-pezo.github.io/visualizer-lc-ms/)
+[![Library](https://img.shields.io/badge/library-843k%20spectra-blueviolet.svg)](#-spectral-library--compilation)
+[![Plotting](https://img.shields.io/badge/plotting-Plotly.js-3f4f75.svg)](https://plotly.com/javascript/)
+[![Stack](https://img.shields.io/badge/stack-HTML5%20%2B%20JS-F7DF1E.svg)](#-technical-notes)
+[![License MIT](https://img.shields.io/badge/license-MIT-green.svg)](#)
+
 Custom HTML visualizer for qualitative review of LC-QTOF-MS/MS samples processed in this private project.
 
 This repository is a static, reproducible, easy-to-open viewer for reviewing chromatograms, raw MS1/MS2 spectra, and library candidates from the processed samples.
