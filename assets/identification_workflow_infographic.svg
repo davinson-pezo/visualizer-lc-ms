@@ -1,0 +1,226 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">LC-QTOF-MS/MS qualitative identification workflow infographic</title>
+  <desc id="desc">Scientific infographic summarizing the LC-QTOF-MS/MS qualitative identification workflow for Biofilm, Chlorella, and Oedogonium samples.</desc>
+  <defs>
+    <style>
+      .bg { fill: #f6f8f5; }
+      .ink { fill: #15212d; }
+      .muted { fill: #51606d; }
+      .small { font: 400 22px Arial, Helvetica, sans-serif; }
+      .tiny { font: 400 17px Arial, Helvetica, sans-serif; }
+      .label { font: 700 20px Arial, Helvetica, sans-serif; letter-spacing: 0; }
+      .title { font: 700 48px Arial, Helvetica, sans-serif; letter-spacing: 0; }
+      .subtitle { font: 400 25px Arial, Helvetica, sans-serif; }
+      .section { font: 700 28px Arial, Helvetica, sans-serif; letter-spacing: 0; }
+      .metric { font: 700 42px Arial, Helvetica, sans-serif; }
+      .card { fill: #ffffff; stroke: #d7dee2; stroke-width: 2; }
+      .pill { fill: #eaf2f3; stroke: #b9ccd0; stroke-width: 1.5; }
+      .step { fill: #ffffff; stroke: #b8c6cd; stroke-width: 2; }
+      .arrow { stroke: #6c7b86; stroke-width: 3; fill: none; marker-end: url(#arrowhead); }
+      .teal { fill: #1d7f87; }
+      .green { fill: #5a8f3d; }
+      .orange { fill: #c46f2a; }
+      .purple { fill: #7b5aa6; }
+      .blue { fill: #286aa6; }
+      .warn { fill: #f4a340; }
+      .line { stroke: #d7dee2; stroke-width: 2; }
+      .bar-bg { fill: #e8edf0; }
+      .bar { fill: #286aa6; }
+      .bar-alt { fill: #5a8f3d; }
+      .bar-warn { fill: #c46f2a; }
+    </style>
+    <marker id="arrowhead" markerWidth="12" markerHeight="8" refX="11" refY="4" orient="auto">
+      <path d="M0,0 L12,4 L0,8 z" fill="#6c7b86"/>
+    </marker>
+    <linearGradient id="headerGrad" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0" stop-color="#17324a"/>
+      <stop offset="0.52" stop-color="#1d7f87"/>
+      <stop offset="1" stop-color="#5a8f3d"/>
+    </linearGradient>
+  </defs>
+
+  <rect class="bg" width="1600" height="900"/>
+  <rect x="0" y="0" width="1600" height="100" fill="url(#headerGrad)"/>
+  <text x="60" y="62" class="title" fill="#ffffff">LC-QTOF-MS/MS qualitative identification workflow</text>
+  <text x="60" y="92" class="subtitle" fill="#dceeed">Biofilm, Chlorella, and Oedogonium extracts | ESI(+/-) | 120 min LC method</text>
+
+  <g transform="translate(60 122)">
+    <rect class="card" x="0" y="0" width="350" height="90" rx="10"/>
+    <circle cx="42" cy="45" r="23" class="blue"/>
+    <text x="42" y="53" text-anchor="middle" font="700 24px Arial, Helvetica, sans-serif" fill="#ffffff">6</text>
+    <text x="82" y="38" class="label ink">LC-MS files</text>
+    <text x="82" y="64" class="tiny muted">positive and negative modes</text>
+  </g>
+  <g transform="translate(435 122)">
+    <rect class="card" x="0" y="0" width="350" height="90" rx="10"/>
+    <circle cx="42" cy="45" r="23" class="teal"/>
+    <text x="42" y="53" text-anchor="middle" font="700 22px Arial, Helvetica, sans-serif" fill="#ffffff">376</text>
+    <text x="82" y="38" class="label ink">Detected peaks</text>
+    <text x="82" y="64" class="tiny muted">BPC peak table after processing</text>
+  </g>
+  <g transform="translate(810 122)">
+    <rect class="card" x="0" y="0" width="350" height="90" rx="10"/>
+    <circle cx="42" cy="45" r="23" class="green"/>
+    <text x="42" y="53" text-anchor="middle" font="700 22px Arial, Helvetica, sans-serif" fill="#ffffff">373</text>
+    <text x="82" y="38" class="label ink">Peaks with MS/MS</text>
+    <text x="82" y="64" class="tiny muted">daughter/product ion evidence</text>
+  </g>
+  <g transform="translate(1185 122)">
+    <rect class="card" x="0" y="0" width="355" height="90" rx="10"/>
+    <circle cx="42" cy="45" r="23" class="orange"/>
+    <text x="42" y="53" text-anchor="middle" font="700 24px Arial, Helvetica, sans-serif" fill="#ffffff">39</text>
+    <text x="82" y="38" class="label ink">Named candidates</text>
+    <text x="82" y="64" class="tiny muted">4 coded library records excluded</text>
+  </g>
+
+  <g transform="translate(60 245)">
+    <rect class="card" x="0" y="0" width="330" height="430" rx="12"/>
+    <text x="28" y="42" class="section ink">1. Acquisition</text>
+    <line x1="28" y1="60" x2="302" y2="60" class="line"/>
+    <g transform="translate(28 88)">
+      <circle cx="19" cy="18" r="18" class="teal"/>
+      <text x="19" y="26" text-anchor="middle" font="700 22px Arial, Helvetica, sans-serif" fill="#ffffff">A</text>
+      <text x="54" y="14" class="label ink">Sample extract</text>
+      <text x="54" y="40" class="tiny muted">aqueous extract</text>
+      <text x="54" y="64" class="tiny muted">+ isopropanol + acetonitrile</text>
+    </g>
+    <g transform="translate(28 172)">
+      <circle cx="19" cy="18" r="18" class="green"/>
+      <text x="19" y="26" text-anchor="middle" font="700 22px Arial, Helvetica, sans-serif" fill="#ffffff">B</text>
+      <text x="54" y="14" class="label ink">LC separation</text>
+      <text x="54" y="40" class="tiny muted">water:ACN + formic acid</text>
+      <text x="54" y="64" class="tiny muted">approximately 120 min method</text>
+    </g>
+    <g transform="translate(28 274)">
+      <circle cx="19" cy="18" r="18" class="purple"/>
+      <text x="19" y="26" text-anchor="middle" font="700 22px Arial, Helvetica, sans-serif" fill="#ffffff">C</text>
+      <text x="54" y="14" class="label ink">QTOF MS/MS</text>
+      <text x="54" y="40" class="tiny muted">ESI(+) and ESI(-)</text>
+      <text x="54" y="64" class="tiny muted">20-50 eV energy ramp</text>
+    </g>
+    <rect class="pill" x="28" y="360" width="274" height="42" rx="21"/>
+    <text x="165" y="388" text-anchor="middle" class="label ink">BPC | TIC | EIC traces</text>
+  </g>
+
+  <g transform="translate(430 245)">
+    <rect class="card" x="0" y="0" width="735" height="430" rx="12"/>
+    <text x="28" y="42" class="section ink">2. Python evidence workflow</text>
+    <line x1="28" y1="60" x2="707" y2="60" class="line"/>
+
+    <g transform="translate(35 92)">
+      <rect class="step" x="0" y="0" width="202" height="88" rx="10"/>
+      <text x="101" y="32" text-anchor="middle" class="label ink">Peak detection</text>
+      <text x="101" y="60" text-anchor="middle" class="tiny muted">BPC local maxima</text>
+      <text x="101" y="82" text-anchor="middle" class="tiny muted">apex RT assignment</text>
+    </g>
+    <path class="arrow" d="M248 136 H300"/>
+    <g transform="translate(310 92)">
+      <rect class="step" x="0" y="0" width="202" height="88" rx="10"/>
+      <text x="101" y="32" text-anchor="middle" class="label ink">MS1 extraction</text>
+      <text x="101" y="60" text-anchor="middle" class="tiny muted">apex scan spectrum</text>
+      <text x="101" y="82" text-anchor="middle" class="tiny muted">principal ion m/z</text>
+    </g>
+    <path class="arrow" d="M523 136 H575"/>
+    <g transform="translate(585 92)">
+      <rect class="step" x="0" y="0" width="112" height="88" rx="10"/>
+      <text x="56" y="32" text-anchor="middle" class="label ink">MS/MS</text>
+      <text x="56" y="60" text-anchor="middle" class="tiny muted">daughter</text>
+      <text x="56" y="82" text-anchor="middle" class="tiny muted">ions</text>
+    </g>
+
+    <path class="arrow" d="M641 188 V232"/>
+    <g transform="translate(35 238)">
+      <rect class="step" x="0" y="0" width="202" height="104" rx="10"/>
+      <text x="101" y="32" text-anchor="middle" class="label ink">Adduct model</text>
+      <text x="101" y="56" text-anchor="middle" class="tiny muted">ESI(+): H, Na, K, NH4</text>
+      <text x="101" y="78" text-anchor="middle" class="tiny muted">solvent adducts: ACN/IPA</text>
+      <text x="101" y="96" text-anchor="middle" class="tiny muted">ESI(-): H loss, FA, Cl, Ac</text>
+    </g>
+    <path class="arrow" d="M248 290 H300"/>
+    <g transform="translate(310 238)">
+      <rect class="step" x="0" y="0" width="202" height="104" rx="10"/>
+      <text x="101" y="32" text-anchor="middle" class="label ink">MoNA matching</text>
+      <text x="101" y="56" text-anchor="middle" class="tiny muted">precursor m/z</text>
+      <text x="101" y="78" text-anchor="middle" class="tiny muted">cosine spectral score</text>
+      <text x="101" y="96" text-anchor="middle" class="tiny muted">fragment tolerance</text>
+    </g>
+    <path class="arrow" d="M523 290 H575"/>
+    <g transform="translate(585 238)">
+      <rect class="step" x="0" y="0" width="112" height="104" rx="10"/>
+      <text x="56" y="32" text-anchor="middle" class="label ink">Curation</text>
+      <text x="56" y="56" text-anchor="middle" class="tiny muted">named</text>
+      <text x="56" y="78" text-anchor="middle" class="tiny muted">records</text>
+      <text x="56" y="96" text-anchor="middle" class="tiny muted">only</text>
+    </g>
+
+    <rect x="35" y="370" width="662" height="38" rx="19" fill="#f1f5ec" stroke="#c5d6b8" stroke-width="1.5"/>
+    <text x="366" y="396" text-anchor="middle" class="label ink">Tentative until confirmed with authentic standards</text>
+  </g>
+
+  <g transform="translate(1205 245)">
+    <rect class="card" x="0" y="0" width="335" height="430" rx="12"/>
+    <text x="28" y="42" class="section ink">3. Review output</text>
+    <line x1="28" y1="60" x2="307" y2="60" class="line"/>
+    <g transform="translate(28 90)">
+      <rect x="0" y="0" width="279" height="66" rx="10" fill="#eff6fb" stroke="#bfd2df" stroke-width="1.5"/>
+      <text x="22" y="28" class="label ink">Interactive viewer</text>
+      <text x="22" y="52" class="tiny muted">chromatograms, MS1, MS/MS, matches</text>
+    </g>
+    <g transform="translate(28 178)">
+      <rect x="0" y="0" width="279" height="66" rx="10" fill="#f1f7ef" stroke="#c5d9c1" stroke-width="1.5"/>
+      <text x="22" y="28" class="label ink">Separated spectra</text>
+      <text x="22" y="52" class="tiny muted">experimental above, library below</text>
+    </g>
+    <g transform="translate(28 266)">
+      <rect x="0" y="0" width="279" height="66" rx="10" fill="#fff5e9" stroke="#e4c59d" stroke-width="1.5"/>
+      <text x="22" y="28" class="label ink">Coded records removed</text>
+      <text x="22" y="52" class="tiny muted">not reported as compound names</text>
+    </g>
+    <g transform="translate(28 354)">
+      <rect x="0" y="0" width="279" height="48" rx="10" fill="#f5f1fb" stroke="#cdbfe3" stroke-width="1.5"/>
+      <text x="140" y="31" text-anchor="middle" class="label ink">Level 2a provisional evidence</text>
+    </g>
+  </g>
+
+  <g transform="translate(60 710)">
+    <rect class="card" x="0" y="0" width="1480" height="145" rx="12"/>
+    <text x="28" y="38" class="section ink">Named MS/MS library candidates per sample</text>
+    <text x="28" y="66" class="tiny muted">Counts exclude coded library records and unknown features.</text>
+
+    <g transform="translate(460 70)">
+      <text x="0" y="10" class="tiny muted">Biofilm +</text>
+      <rect x="112" y="5" width="220" height="16" rx="8" class="bar-bg"/>
+      <rect x="112" y="5" width="86" height="16" rx="8" class="bar"/>
+      <text x="346" y="10" class="tiny ink">7</text>
+
+      <text x="0" y="36" class="tiny muted">Biofilm -</text>
+      <rect x="112" y="31" width="220" height="16" rx="8" class="bar-bg"/>
+      <rect x="112" y="31" width="24" height="16" rx="8" class="bar-alt"/>
+      <text x="346" y="36" class="tiny ink">2</text>
+
+      <text x="0" y="62" class="tiny muted">Chlorella +</text>
+      <rect x="112" y="57" width="220" height="16" rx="8" class="bar-bg"/>
+      <rect x="112" y="57" width="220" height="16" rx="8" class="bar-warn"/>
+      <text x="346" y="62" class="tiny ink">18</text>
+    </g>
+
+    <g transform="translate(930 70)">
+      <text x="0" y="10" class="tiny muted">Chlorella -</text>
+      <rect x="128" y="5" width="220" height="16" rx="8" class="bar-bg"/>
+      <rect x="128" y="5" width="24" height="16" rx="8" class="bar-alt"/>
+      <text x="362" y="10" class="tiny ink">2</text>
+
+      <text x="0" y="36" class="tiny muted">Oedogonium +</text>
+      <rect x="128" y="31" width="220" height="16" rx="8" class="bar-bg"/>
+      <rect x="128" y="31" width="110" height="16" rx="8" class="bar"/>
+      <text x="362" y="36" class="tiny ink">9</text>
+
+      <text x="0" y="62" class="tiny muted">Oedogonium -</text>
+      <rect x="128" y="57" width="220" height="16" rx="8" class="bar-bg"/>
+      <rect x="128" y="57" width="12" height="16" rx="8" class="bar-alt"/>
+      <text x="362" y="62" class="tiny ink">1</text>
+    </g>
+  </g>
+
+  <text x="60" y="884" class="tiny muted">Private project asset for README use. Library candidates are qualitative annotations based on precursor mass, MS/MS fragments, adduct plausibility, and manual review.</text>
+</svg>

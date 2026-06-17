@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LC-QTOF-MS/MS Evidence Reviewer</title>
+  <link rel="stylesheet" href="style.css?v=20260616-review-redesign">
+  <script src="vendor/plotly-2.24.1.min.js"></script>
+</head>
+<body class="polarity-pos">
+
+  <header>
+    <div class="brand-section">
+      <div class="logo-icon">Q</div>
+      <div class="title-section">
+        <h1>LC-QTOF-MS/MS Evidence Reviewer</h1>
+        <p>Qualitative review of peaks, adducts, MS/MS spectra, and library candidates</p>
+      </div>
+    </div>
+    
+    <div class="controls-section">
+      <div class="sample-selector-wrapper">
+        <label for="sampleSelect" class="select-label">Sample:</label>
+        <select id="sampleSelect" class="dropdown-select">
+          <option value="Biofilm 1a _2_1_5194">Biofilm ESI(+) [5194]</option>
+          <option value="Biofilm1 ESI-_2_1_5201">Biofilm ESI(-) [5201]</option>
+          <option value="Chlorella_4_1_5198" selected>Chlorella ESI(+) [5198]</option>
+          <option value="Chlorella ESI-_4_1_5203">Chlorella ESI(-) [5203]</option>
+          <option value="Oedogonium_3_1_5196">Oedogonium ESI(+) [5196]</option>
+          <option value="Oedogonium ESI-_3_1_5202">Oedogonium ESI(-) [5202]</option>
+        </select>
+      </div>
+      
+      <div id="polarityBadge" class="polarity-badge">ESI(+)</div>
+    </div>
+  </header>
+
+  <main class="dashboard-container">
+    <section class="method-strip" aria-label="Method and data quality summary">
+      <div class="method-chip">
+        <span class="method-chip-label">Method</span>
+        <strong>120 min LC-QTOF-MS</strong>
+      </div>
+      <div class="method-chip">
+        <span class="method-chip-label">Data source</span>
+        <strong>mzML + MS/MS library</strong>
+      </div>
+      <div class="method-chip">
+        <span class="method-chip-label">Mobile phase</span>
+        <strong>Water:ACN + formic acid</strong>
+      </div>
+      <div class="method-chip">
+        <span class="method-chip-label">MS/MS CE</span>
+        <strong>20-50 eV ramp</strong>
+      </div>
+    </section>
+
+    <section class="evidence-guide" aria-label="Chromatography and mass spectrometry concepts">
+      <div class="guide-item">
+        <span class="guide-label">BPC</span>
+        <p>Base Peak Chromatogram: for each MS1 scan, it plots the most intense ion. Useful for locating dominant apexes.</p>
+      </div>
+      <div class="guide-item">
+        <span class="guide-label">TIC</span>
+        <p>Total Ion Chromatogram: sums all ion signal in each scan. Shows total load, background, and complex regions.</p>
+      </div>
+      <div class="guide-item">
+        <span class="guide-label">EIC m/z</span>
+        <p>Extracted Ion Chromatogram: signal for one selected m/z. Used to inspect the local peak shape of the selected ion.</p>
+      </div>
+    </section>
+    
+    <!-- Left column: Chromatogram and Spectra plots -->
+    <div class="left-panel">
+      
+      <!-- Chromatogram plot card -->
+      <div class="glass-card chromatogram-card">
+        <div class="card-header">
+          <div class="card-title-group">
+            <h2 class="card-title">Global chromatogram <span class="indicator" id="chromatogramIndicator">Loading...</span></h2>
+            <p class="card-subtitle">Selecting a peak does not change the zoom; use the plot controls or the reset button.</p>
+          </div>
+          <div class="chromatogram-actions">
+            <div class="chromatogram-toggle-group" aria-label="Chromatogram type">
+              <button class="chrom-toggle-btn active" id="btnShowBpc">BPC</button>
+              <button class="chrom-toggle-btn" id="btnShowTic">TIC</button>
+            </div>
+            <button class="chrom-reset-btn" id="btnResetChromZoom">Reset zoom</button>
+          </div>
+        </div>
+        <div class="selection-strip" id="chromSelectionSummary">
+          No peak selected. Red markers are detected BPC apexes.
+        </div>
+        <div id="chromatogramPlot" class="plot-container"></div>
+        <div class="eic-review-panel" id="eicPanel">
+          <div class="pane-title">
+            <span>EIC for selected ion</span>
+            <span class="badge eic">EIC</span>
+          </div>
+          <div id="eicPlot" class="eic-plot">
+            <div class="no-spectra-msg compact" id="eicPlaceholder">
+              <span>Select a peak to review the EIC of its main ion.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Spectra plots card -->
+      <div class="glass-card spectra-card">
+        <div class="card-header">
+          <h2 class="card-title">Spectral evidence for the selected feature</h2>
+          <div class="spectra-actions">
+            <div class="spectra-toggle-group" aria-label="Evidence view mode">
+              <button class="spectra-toggle-btn active" id="btnShowSpectra">Spectra View</button>
+              <button class="spectra-toggle-btn" id="btnShow3D">3D Peak Map</button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="spectra-grid">
+          <!-- MS1 spectrum pane -->
+          <div class="spectrum-pane">
+            <div class="pane-title">
+              <span>MS1 scan at peak apex</span>
+              <span class="badge ms1">MS1</span>
+            </div>
+            <div id="ms1Plot" class="spectrum-plot">
+              <div class="no-spectra-msg" id="ms1Placeholder">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                <span>Select a peak to view the MS1 spectrum</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- MS2 spectrum pane -->
+          <div class="spectrum-pane">
+            <div class="pane-title">
+              <span>Experimental vs. Library MS/MS (Mirror Plot)</span>
+              <span class="badge ms2">Mirror Plot</span>
+            </div>
+            <div id="ms2Plot" class="spectrum-plot">
+              <div class="no-spectra-msg" id="ms2Placeholder">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+                <span>Select a peak with MS/MS fragmentation</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3D Peak Map container -->
+        <div id="plotly3DContainer" style="display: none;">
+          <div class="pane-title">
+            <span>3D MS1 Peak Map (RT vs m/z vs Intensity)</span>
+            <span class="badge ms1">3D Map</span>
+          </div>
+          <div id="plotly3DPlot" class="plotly-3d-plot">
+            <div class="no-spectra-msg" id="plotly3DPlaceholder">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+              <span>Select a peak to view the 3D raw signal map</span>
+            </div>
+          </div>
+          <div class="plotly-3d-guide">
+            <h3>Scientific Interpretation Guide (3D MS1 Peak Envelope)</h3>
+            <p>
+              The interactive 3D map shows individual MS1 signal points acquired around the chromatographic peak apex (&plusmn;0.05 Da mass window and &plusmn;30 seconds retention time window). Signal intensity is encoded by both point size and the high-contrast neon colorscale (Cyan &rarr; Pink &rarr; Gold).
+            </p>
+            <ul>
+              <li><strong>Clean Chemical Peak (Perfect Co-elution):</strong> Displays a smooth, three-dimensional envelope centered on a single apex point of maximum intensity, with values dropping off symmetrically in both RT and m/z.</li>
+              <li><strong>Plausible Adducts / Co-eluting Ions:</strong> Genuine adduct ions will share the exact same chromatographic elution profile in RT but will be shifted on the m/z axis (e.g., [M+Na]<sup>+</sup> shifted by +22.9892 Da relative to [M+H]<sup>+</sup>).</li>
+              <li><strong>Background Contamination / Streaks:</strong> Continuous signals that do not show a clear peak apex in RT but rather a flat line of signal across the entire time range are typical chemical background contaminants (e.g., plasticizers, detergents).</li>
+              <li><strong>Matrix Noise / Spurious Signals:</strong> Isolated, low-intensity points scattered randomly without a defined Gaussian-like peak shape represent electronic noise or matrix background.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="reference-grid">
+          <div class="fragment-match-panel" id="fragmentMatchPanel" style="display: none;">
+            <div class="pane-title">
+              <span>Matched daughter ions used for scoring</span>
+              <span class="badge fragment">Fragments</span>
+            </div>
+            <div class="fragment-table-wrap">
+              <table class="fragment-table">
+                <thead>
+                  <tr>
+                    <th>Exp m/z</th>
+                    <th>Lib m/z</th>
+                    <th>Delta Da</th>
+                    <th>Exp %</th>
+                    <th>Lib %</th>
+                  </tr>
+                </thead>
+                <tbody id="fragmentMatchBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+    
+    <!-- Right column: Peak Table and Detailed Peak Information -->
+    <div class="right-panel">
+      
+      <!-- Peak list table card -->
+      <div class="glass-card peak-list-card">
+        <div class="card-header">
+          <h2 class="card-title">Detected Peaks <span class="indicator" id="peakCountIndicator">(0)</span></h2>
+        </div>
+        
+        <div class="filter-bar">
+          <div class="search-input-wrapper">
+            <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="text" id="searchInput" class="search-input" placeholder="Search by compound, m/z, RT...">
+          </div>
+          
+          <div class="filter-tabs">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="lib">MS/MS library</button>
+            <button class="filter-btn" data-filter="ms2">With MS2</button>
+          </div>
+        </div>
+        
+        <div class="table-container">
+          <table class="peak-table" id="peakTable">
+            <thead>
+              <tr>
+                <th style="width: 70px;">ID</th>
+                <th style="width: 80px; text-align: right;">RT (min)</th>
+                <th style="width: 100px; text-align: right;">m/z</th>
+                <th>Candidate / Annotation</th>
+              </tr>
+            </thead>
+            <tbody id="peakTableBody">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+      
+      <!-- Selected peak detail card -->
+      <div class="glass-card peak-details-card" id="peakDetailsContainer">
+        <!-- Default State: Empty -->
+        <div class="empty-details" id="emptyDetailsState">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          <p>Select a peak from the chromatogram or the list to inspect its chemical and spectral evidence</p>
+        </div>
+        
+        <!-- Active State: Compound details (Hidden by default) -->
+        <div id="activeDetailsState" style="display: none;">
+          <div class="compound-header">
+            <div class="compound-title-group">
+              <div class="compound-name" id="detName">Compound name</div>
+              <div class="compound-formula" id="detFormula">Chemical formula</div>
+            </div>
+            <span class="compound-type-badge" id="detTypeBadge">Unidentified</span>
+          </div>
+          
+          <div class="details-grid">
+            <div class="detail-item">
+              <div class="detail-label">Peak ID</div>
+              <div class="detail-value highlight" id="detPeakId">Peak 00</div>
+            </div>
+            
+            <div class="detail-item">
+              <div class="detail-label">True Apex RT</div>
+              <div class="detail-value" id="detRtCorrected">0.00 min</div>
+            </div>
+            
+            <div class="detail-item">
+              <div class="detail-label">Ion Precursor (m/z)</div>
+              <div class="detail-value" id="detMz">0.0000</div>
+            </div>
+            
+            <div class="detail-item">
+              <div class="detail-label">Apex Intensity (BPC)</div>
+              <div class="detail-value" id="detAbundance">0</div>
+            </div>
+            
+            <div class="detail-item">
+              <div class="detail-label">Adduct / Neutral Mass</div>
+              <div class="detail-value" id="detAdduct">--</div>
+            </div>
+            
+            <div class="detail-item">
+              <div class="detail-label">Tandem Spectrum</div>
+              <div class="detail-value" id="detMs2Status">Not available</div>
+            </div>
+            
+            <div class="detail-item full-width" id="libraryMatchStats" style="display: none;">
+              <div class="detail-label">MS/MS library match statistics</div>
+              <div class="detail-value" style="font-size: 0.8rem; display: flex; gap: 1rem;">
+                <div><strong>Cosine Score:</strong> <span id="detLibScore">0.00</span></div>
+                <div><strong>Mass Error:</strong> <span id="detLibError">0.0 ppm</span></div>
+              </div>
+            </div>
+
+            <div class="detail-item full-width" id="detRelationsContainer" style="display: none;">
+              <div class="detail-label">Co-elution & Adduct Relations</div>
+              <div class="detail-value" id="detRelations" style="font-size: 0.8rem; line-height: 1.45;">--</div>
+            </div>
+
+            <div class="detail-item full-width warning-item" id="detWarningsContainer" style="display: none;">
+              <div class="detail-label">Warnings</div>
+              <div class="detail-value" id="detWarnings">--</div>
+            </div>
+          </div>
+          
+          <!-- Actions & Search Engines Group -->
+          <div class="search-engines-group">
+            <div class="detail-label">Scientific Database Queries</div>
+            <div class="btn-grid">
+              <a href="#" target="_blank" rel="noopener noreferrer" class="action-btn" id="linkPubChem">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                PubChem
+              </a>
+              <a href="#" target="_blank" rel="noopener noreferrer" class="action-btn" id="linkGNPS">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                GNPS
+              </a>
+              <a href="#" target="_blank" rel="noopener noreferrer" class="action-btn" id="linkHMDB">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                HMDB
+              </a>
+              <a href="#" target="_blank" rel="noopener noreferrer" class="action-btn" id="linkMassBank">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                MassBank
+              </a>
+              <button class="action-btn primary" id="btnExportMsp">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                Export MS2 Spectrum (.MSP)
+              </button>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      
+    </div>
+    
+  </main>
+
+  <script src="app.js?v=20260616-coded-records"></script>
+</body>
+</html>
